@@ -31,15 +31,17 @@ class New_SQL:
         )
         self.connection.commit()
         
-    def returnExisting(self, key, value):
+    def returnExisting(self, key, value, profile):
         try:
             query = f"SELECT * FROM usuarios WHERE {key} = ?"
             self.Cursor.execute(query, (value,))
             result = self.Cursor.fetchone()
             
-            if result == None:
+            if result is None:
                 return True
             else:
+                if profile == True: 
+                    return [result]
                 return False
             
         
