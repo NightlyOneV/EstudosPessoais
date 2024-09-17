@@ -8,10 +8,10 @@ def iniciarAcao():
     acao = None 
     
     try:
-        acao = int(input("Digite 1 para iniciar um cadastro\nDigite 2 para iniciar um login\nDigite:"))
+        acao = int(input("Digite 1 para iniciar um cadastro\nDigite 2 para iniciar um login\nDigite: "))
     except:
         print("Inválido!")
-        acao = int(input("Digite 1 para iniciar um cadastro\nDigite 2 para iniciar um login\nDigite:"))
+        acao = int(input("Digite 1 para iniciar um cadastro\nDigite 2 para iniciar um login\nDigite: "))
         
     match acao:
         case 1:
