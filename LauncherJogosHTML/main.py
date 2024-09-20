@@ -1,22 +1,46 @@
 import sys 
 import subprocess 
-
+import os
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QListWidget, QHBoxLayout
+from PySide6.QtWebEngineWidgets import QWebEngineView
 def main():
-    pass
+    if __name__ == '__main__':
+        app = QApplication(sys.argv)
+        launcher = App()
+        launcher.show()
+        sys.exit(app.exec())
+class App(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Launcher Teste")
+        self.setGeometry(100,100,800,800)
+        
+        self.layout = QVBoxLayout(self)
+        self.h_layout = QHBoxLayout(self)
+        
+        self.game_list = QListWidget()
+        self.loadGameList()
+        self.game_list.itemClicked.connect(self.loadGame)
+        
+        self.browser = QWebEngineView()
+        
+        self.h_layout.addWidget(self.game_list, 1)
+        self.h_layout.addWidget(self.browser, 1)
+        self.layout.addLayout(self.h_layout)
 
-def PKG_install(pkg): # Função pra dar pip install em libs se necessário.
-    print(f"Efetuando a instalação da lib: {pkg}")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", pkg]) 
-  
-def PKG_importSetup(): # Função para dar import nas libs.
-    from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QListWidget, QHBoxLayout
-    from PySide6.QtWebEngineWidgets import QWebEngineView
-    
-def PKG_verify(): # Verificando se o usuário tem as libs, se não vamos botar para baixar.
-    try: 
-        PKG_importSetup()
-    except ImportError:
-        PKG_install("pyside6")
-        PKG_importSetup()
-    
-    
+    def loadGameList(self):
+        self.game_dir = 'jogos_html'
+        print(f"Caminho absoluto: {os.path.abspath(self.game_dir)}")
+        for folder in os.listdir(self.game_dir):
+            folder_path = os.path.join(self.game_dir, folder)
+            if os.path.isdir(folder_path) and 'index.html' in os.listdir(folder_path):
+                self.game_list.addItem(folder)  
+
+    def loadGame(self, item):
+        game_folder = os.path.join(self.game_dir, item.text())
+        game_html = os.path.join(game_folder, 'index.html')
+        self.browser.setUrl(f'file:///{os.path.abspath(game_html)}')
+        
+        
+        
+main()
