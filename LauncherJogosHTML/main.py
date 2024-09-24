@@ -12,7 +12,7 @@ def main():
 class App(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Launcher Teste")
+        self.setWindowTitle("LauncherHTML")
         self.setGeometry(100,100,800,800)
         
         self.layout = QVBoxLayout(self)
@@ -24,22 +24,37 @@ class App(QWidget):
         
         self.browser = QWebEngineView()
         
-        self.h_layout.addWidget(self.game_list, 1)
+        self.h_layout.addWidget(self.game_list, 0)
         self.h_layout.addWidget(self.browser, 1)
         self.layout.addLayout(self.h_layout)
 
     def loadGameList(self):
-        self.game_dir = 'jogos_html'
-        print(f"Caminho absoluto: {os.path.abspath(self.game_dir)}")
-        for folder in os.listdir(self.game_dir):
-            folder_path = os.path.join(self.game_dir, folder)
-            if os.path.isdir(folder_path) and 'index.html' in os.listdir(folder_path):
-                self.game_list.addItem(folder)  
+        self.game_dir = 'LauncherJogosHTML/jogos_html'
+        abs_game_dir = os.path.abspath(self.game_dir)
+
+        print(f"Caminho absoluto: {abs_game_dir}")
+
+        if not os.path.exists(abs_game_dir):
+            print("Não existe o diretório!")
+            return
+
+        for folder in os.listdir(abs_game_dir):
+            print("Arquivo carregado!")
+            folder_path = os.path.join(abs_game_dir, folder)
+            
+            if os.path.isdir(folder_path):
+                files_in_folder = os.listdir(folder_path)
+                if 'index.html' in files_in_folder:
+                    self.game_list.addItem(folder)
 
     def loadGame(self, item):
         game_folder = os.path.join(self.game_dir, item.text())
         game_html = os.path.join(game_folder, 'index.html')
-        self.browser.setUrl(f'file:///{os.path.abspath(game_html)}')
+        
+        game_path = os.path.abspath(game_html)
+        file_url =  f"file:///{game_path.replace("\\","/")}"
+        print(f"Loading game: {file_url}")
+        self.browser.setUrl(file_url)
         
         
         
