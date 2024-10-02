@@ -1,0 +1,1 @@
+Insira pastas com jogos com index.html dentro
