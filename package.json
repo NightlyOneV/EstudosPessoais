@@ -1,0 +1,24 @@
+{
+  "name": "estudospessoais",
+  "version": "1.0.0",
+  "description": "Esse é um repositório que usarei para guardar quaisquer estudos meus feitos na prática, caso você esteja vendo este repositório e queira me ajudar no meu desenvolvimento pessoal como programador, me deixe saber!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NightlyOneV/EstudosPessoais.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NightlyOneV/EstudosPessoais/issues"
+  },
+  "homepage": "https://github.com/NightlyOneV/EstudosPessoais#readme",
+  "devDependencies": {
+    "sucrase": "^3.35.0",
+    "typescript": "^5.6.3"
+  }
+}

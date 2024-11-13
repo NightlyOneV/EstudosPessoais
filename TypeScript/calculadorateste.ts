@@ -40,7 +40,14 @@ class Calculadora {
     }
 
     multiplicar(){
-        
+        let resultado: number = 1
+
+        for (let numAtual of this.numerosCalc){
+            resultado *= numAtual
+        }
+
+        console.log(`O Resultado foi ${resultado}`)
+
     }
 
 }
@@ -53,3 +60,4 @@ Calc.inserir(3)
 Calc.consultar()
 Calc.somar()
 Calc.subtrair()
+Calc.multiplicar()
