@@ -60,4 +60,8 @@ Calc.inserir(3)
 Calc.consultar()
 Calc.somar()
 Calc.subtrair()
+<<<<<<< HEAD
 Calc.multiplicar()
+=======
+Calc.multiplicar()
+>>>>>>> 2cccbf98fa1dcb4eba127f172603b8cce77c64fc
